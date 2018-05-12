@@ -15,7 +15,8 @@ You'll need to have [node (nodejs)](https://nodejs.org/en/download/) installed o
 2. Install dependencies: enter this folder (commandline) and run:
 `npm install`
 3. Fetch a specific ledger into a local `json` file
-4. Read the ledger data (from the local `json` file) and calculate stats **(WORK IN PROGRESS!)**
+4. Read the ledger data (from the local `json` file) and calculate stats
+5. Show the stats in your terminal, and export the stats to a `json` file.
 
 ![Demo](https://jtfdmop.dlvr.cloud/XRP%20stats.gif)
 
@@ -87,3 +88,29 @@ npm run stats 32570
 ```
 
 ... where `32570` is the ledger index you want to process. You should -of course- have fetched this ledger first.
+
+The stats will be displayed in the terminal and exported to `./data/ledgerno.stats.json` [in this format](https://ajx2m1t.dlvr.cloud/pasted_1.png):
+
+```
+{
+  meta: { ... },
+  top100Balance: 123.567,
+  accountPercentageBalance: [ 
+    {
+      percentage: 1,
+      numberAccounts: 2,
+      balanceEqGt: 3
+    },
+    { ... }
+  ],
+  accountNumberBalanceRange: [
+    {
+      numberAccounts: 1,
+      balanceFrom: 2,
+      balanceTo: 3,
+      balanceSum: 4
+    },
+    { ... }
+  ]
+}
+```
