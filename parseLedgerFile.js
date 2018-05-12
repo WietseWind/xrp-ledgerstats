@@ -21,26 +21,31 @@ if (process.argv.length < 3) {
 }
 
 let filename = parseInt(process.argv[2].split('.')[0]) + '.json'
+let exportJson = {
+    meta: {},
+    top100Balance: 0,
+    accountPercentageBalance: [],
+    accountNumberBalanceRange: []
+}
 if (fs.existsSync(__dirname + '/data/' + filename)) {
     console.log('Reading ledger stats:', filename)
     let data = JSON.parse(fs.readFileSync(__dirname + '/data/' + filename))
     data.balances.sort((a, b) => { return (a.b > b.b) ? -1 : ((b.b > a.b) ? 1 : 0) })
     
     let numberOfAccounts = data.balances.length
-    console.log('  > Done')
     console.log(' -- Accounts:             ', numberOfAccounts)
+    exportJson.meta.numberAccounts = numberOfAccounts
     console.log(' -- Ledger close time:    ', data.stats.close_time_human)
+    exportJson.meta.ledgerClosedAt = data.stats.close_time_human
     console.log(' -- Ledger hash:          ', data.stats.hash)
+    exportJson.meta.ledgerHash = data.stats.hash
     console.log(' -- Total XRP existing:   ', numeral(data.stats.total_coins).format('0,0.000000'))
+    exportJson.meta.existingXRP = data.stats.total_coins
     console.log('')
     console.log('Calculating spendable XRP sum')
     let balanceSum = data.balances.reduce((a, b) => { return a + b.b }, 0)
-    console.log('  > Done')
     console.log(' -- Accounts balance sum: ', numeral(balanceSum).format('0,0.000000'))
-    console.log('')
-
-    console.log('Sorting balances')
-    console.log('  > Done')
+    exportJson.top100Balance = balanceSum
     console.log('')
 
     console.log('Stats 🎉')
@@ -63,6 +68,11 @@ if (fs.existsSync(__dirname + '/data/' + filename)) {
             numeral(n).format('0,0.'), 
             numeral(e).format('0,0.000000') + ' XRP'
         ])
+        exportJson.accountPercentageBalance.push({
+            percentage: p,
+            numberAccounts: n,
+            balanceEqGt: e
+        })
     })
     console.log(table(pctAccountsBalance, { 
         columns: {
@@ -100,6 +110,12 @@ if (fs.existsSync(__dirname + '/data/' + filename)) {
             lastBalanceRange === 0 ? '∞' : numeral(t).format('0,0.'),
             numeral(Math.round(s)).format('0,0.000000')
         ])
+        exportJson.accountNumberBalanceRange.push({
+            numberAccounts: a,
+            balanceFrom: f,
+            balanceTo: t,
+            balanceSum: s
+        })
         lastBalanceRange = b
     })
     console.log(table(noAccountsBalanceRange, { 
@@ -113,7 +129,10 @@ if (fs.existsSync(__dirname + '/data/' + filename)) {
 
     console.log('')
     console.log('---')
-    console.log('TODO: Export to JSON file for external analysis')
+    console.log('Writing stats...')
+    let exportFilename = __dirname + '/data/' + filename.replace(/.json$/, '.stats.json')
+    fs.writeFileSync(exportFilename, JSON.stringify(exportJson), 'utf8');
+    console.log(' > Stats written as JSON object to: ', exportFilename)
     console.log('')
 } else {
     instructions()
