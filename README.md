@@ -17,6 +17,8 @@ You'll need to have [node (nodejs)](https://nodejs.org/en/download/) installed o
 3. Fetch a specific ledger into a local `json` file
 4. Read the ledger data (from the local `json` file) and calculate stats **(WORK IN PROGRESS!)**
 
+![Demo](https://jtfdmop.dlvr.cloud/XRP%20stats.gif)
+
 ## Syntax
 
 ### Fetch ledger account data into .json file
