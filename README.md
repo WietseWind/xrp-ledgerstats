@@ -85,7 +85,3 @@ npm run stats 32570
 ```
 
 ... where `32570` is the ledger index you want to process. You should -of course- have fetched this ledger first.
-
-**NOTE! THE STATS AREN'T READY YET! ONLY THE BASIC LEDGER INFORMATION AND TOP 100 ACCOUNT STATS ARE CURRENTLY PRINTED**.
-
-I'll add the Rich List stats (https://ledger.exposed) within a few days.
