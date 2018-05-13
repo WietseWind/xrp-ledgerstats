@@ -85,7 +85,7 @@ if (fs.existsSync(__dirname + '/data/' + filename)) {
 
     console.log('')
     console.log(' -- Number of accounts and sum of balance range')
-    let balanceranges = [ 1000000000, 500000000, 100000000, 20000000, 10000000, 5000000, 1000000, 500000, 100000, 75000, 50000, 25000, 10000, 5000, 1000, 500, 0 ]
+    let balanceranges = [ 1000000000, 500000000, 100000000, 20000000, 10000000, 5000000, 1000000, 500000, 100000, 75000, 50000, 25000, 10000, 5000, 1000, 500, 20, 0 ]
     let noAccountsBalanceRange = [ [ '# Accounts', 'Balance from', '... To', 'Sum (XRP)' ] ]
     let sliceFrom = 0
     let lastBalanceRange = 0
