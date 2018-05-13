@@ -114,3 +114,21 @@ The stats will be displayed in the terminal and exported to `./data/ledgerno.sta
   ]
 }
 ```
+
+## Batch processing
+
+To download a ledger, calculate the stats, increment (backwards) and do the same all over again, you can use:
+
+```
+npm run batch {startledger} {rippledserver} {increment}
+```
+
+eg.
+
+```
+npm run batch 38630615 s2.ripple.com 100000
+```
+
+... to start at ledger `38630615` and then increment backin history by 100,000 ledgers.
+
+The batch process will cleanup the downloaded ledger data (to save storage space). The `json` files containing the calculation results will be stored in `./data/`.

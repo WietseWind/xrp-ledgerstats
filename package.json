@@ -10,7 +10,8 @@
   },
   "scripts": {
     "fetch": "node fetchLedger.js",
-    "stats": "node parseLedgerFile.js"
+    "stats": "node parseLedgerFile.js",
+    "batch": "bash batchFetchCalc.sh"
   },
   "repository": {
     "type": "git",
