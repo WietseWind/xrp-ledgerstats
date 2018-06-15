@@ -58,7 +58,7 @@ if (fs.existsSync(__dirname + '/data/' + filename)) {
 
     console.log('')
     console.log(' -- Percentage of accounts with balance starting at...')
-    let percentages = [ 0.2, 0.5, 1, 2, 3, 4, 5, 10 ]
+    let percentages = [ 0.01, 0.1, 0.2, 0.5, 1, 2, 3, 4, 5, 10 ]
     let pctAccountsBalance = [ [ 'Percentage', '# Accounts', 'Balance equals (or greater than)' ] ]
     percentages.forEach(p => {
         let n = Math.round(numberOfAccounts / 100 * p)
