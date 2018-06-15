@@ -39,6 +39,8 @@ if (fs.existsSync(__dirname + '/data/' + filename)) {
     exportJson.meta.ledgerClosedAt = data.stats.close_time_human
     console.log(' -- Ledger hash:          ', data.stats.hash)
     exportJson.meta.ledgerHash = data.stats.hash
+    console.log(' -- Ledger index:         ', data.stats.ledger_index)
+    exportJson.meta.ledgerIndex = data.stats.ledger_index
     console.log(' -- Total XRP existing:   ', numeral(data.stats.total_coins).format('0,0.000000'))
     exportJson.meta.existingXRP = data.stats.total_coins
     console.log('')
