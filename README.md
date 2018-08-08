@@ -10,9 +10,10 @@ Please note: the public _rippled_ servers at `s1.ripple.com` (recent ledgers) an
 
 You'll need to have [node (nodejs)](https://nodejs.org/en/download/) installed on your computer. Node runs the JS (Javascript) code in this repository [source]().
 
+0. If you are on Windows: install Git: https://git-scm.com/download/win
 1. Clone this repository: 
 `git clone https://github.com/WietseWind/xrp-ledgerstats.git`
-2. Install dependencies: enter this folder (commandline) and run:
+2. Install dependencies: enter the cloned folder (on the commandline) using `cd xrp-ledgerstats` and run:
 `npm install`
 3. Fetch a specific ledger into a local `json` file
 4. Read the ledger data (from the local `json` file) and calculate stats
